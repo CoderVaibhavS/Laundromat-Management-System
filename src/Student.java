@@ -4,7 +4,7 @@ public class Student {
     private String hostel;
     private int balance;
     protected int washNo = 0;
-    Wash_Plans plan;
+    Wash_Plan plan;
 
     public String getName() {
         return this.name;
@@ -22,10 +22,11 @@ public class Student {
         return this.balance;
     }
 
-    Student(String name, String id, String hostel) {
+    Student(String name, String id, String hostel, String planName) {
         this.name = name;
         this.id = id;
         this.hostel = hostel;
         this.balance = 0;
+        this.plan = Admin.PlansList.getPlan(planName);
     }
 }

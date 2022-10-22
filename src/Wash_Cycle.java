@@ -8,8 +8,8 @@ public class Wash_Cycle extends Student {
     Date placeDate;    /* Date.now() when the wash order is placed */
     Date expDelDate;   /* Date estimated by admin after the order is collected */
 
-    Wash_Cycle(String name, String id, String hostel) {
-        super(name, id, hostel);
+    Wash_Cycle(String name, String id, String hostel, String planName) {
+        super(name, id, hostel, planName);
         super.washNo += 1;
     }
 
