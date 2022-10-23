@@ -1,3 +1,5 @@
+
+
 public class Main {
     public static void main(String[] args) {
 //        adding wash plans to admin's plans list
@@ -12,6 +14,25 @@ public class Main {
 
 //        student added to admin's student list after registering
         Admin.StudentsList.addStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4");
+        
+        Student vaibhav = Admin.students.get(0);
+        //dropping laundry
+        vaibhav.dropLaundry(5);
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);//checking status afterjust after dropping
+        System.out.println("Please wait while we are washing");
+        try {
+            Thread.sleep(4000); //delay for 4 seconds(wash time during testing)
+          } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+            }
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);//check status before refresh
+        vaibhav.refreshCycles();//refresh
+        System.out.println("-----------------After Refreshing---------------");
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);//check status after refresh
+        vaibhav.recieveLaundry(vaibhav.listOfWash_Cycles.get(0));
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).recieved);//recieve status after recieving
+        System.out.println(vaibhav.getBalance());
+        
         System.out.println(Admin.students.get(0).getName());
     }
 }
