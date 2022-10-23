@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 
 public class Admin {
+    private static int revenue;
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
     public static ArrayList<Student> students = new ArrayList<>();
+    public static int getRevenue() { return revenue; }
 
     static class PlansList {
         //    adds a new plan
@@ -13,13 +15,9 @@ public class Admin {
             washPlans.add(plan);
         }
 
-        //    removes a plan by matching its name from the arraylist of washplans
+        //    removes a plan by matching its name from the arraylist of wash plans
         public static void removePlan(String planName) {
-            for(Wash_Plan plan: washPlans) {
-                if (plan.getName().equals(planName)) {
-                    washPlans.remove(plan);
-                }
-            }
+            washPlans.removeIf(plan -> plan.getName().equals(planName));
         }
 
         //    gets the whole plan object from its name
@@ -42,11 +40,7 @@ public class Admin {
 
 //        removes a student from list on matching his/her id if the student opts out
         public static void removeStudent(String studentId) {
-            for(Student student: students) {
-                if (student.getId().equals(studentId)) {
-                    students.remove(student);
-                }
-            }
+            students.removeIf(student -> student.getId().equals(studentId));
         }
     }
 }
