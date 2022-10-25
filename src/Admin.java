@@ -5,7 +5,7 @@ public class Admin {
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
-    public static ArrayList<Student> students = new ArrayList<>();
+    public static ArrayList<StudentAccount> students = new ArrayList<>();
     public static int getRevenue() { return revenue; }
 
     static class PlansList {
@@ -34,16 +34,13 @@ public class Admin {
     static class StudentsList {
 //        adds a new student after registering
         public static void addStudent(String name, String id, String hostel, String planName) {
-            Student student = new Student(name, id, hostel, planName);
+            StudentAccount student = new StudentAccount(name, id, hostel, planName);
             students.add(student);
-        System.out.println("New Student registered: "+name);
         }
 
 //        removes a student from list on matching his/her id if the student opts out
         public static void removeStudent(String studentId) {
             students.removeIf(student -> student.getId().equals(studentId));
-        System.out.println("Student removed: "+studentId);
-
         }
     }
 }

@@ -12,29 +12,14 @@ interface Laundry {
     public void refreshCycles();
 }
 
-public class Student extends Wash_Plan implements Laundry {
-    public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
-    private String name;
-    private String id;
-    private String hostel;
+public class StudentAccount extends StudentProfile implements Laundry {
+
     private int balance;    // total semester balance including the plan and additional charges
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
     private int washCyclesLeft;
 //    Wash_Plan plan;
 
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getHostel() {
-        return this.hostel;
-    }
 
     public int getBalance() {
         return this.balance;
@@ -51,7 +36,7 @@ public class Student extends Wash_Plan implements Laundry {
 
     public void dropLaundry(float weight) {
 
-        Wash_Cycle cycle = new Wash_Cycle(name, id, hostel, super.getName());
+        Wash_Cycle cycle = new Wash_Cycle(super.getName(), super.getId(), super.getHostel(), super.getName());
         
         cycle.weight = weight;
         cycle.status = false;
@@ -60,7 +45,7 @@ public class Student extends Wash_Plan implements Laundry {
         cal.setTime(new Date());
         cycle.placeDate = cal.getTime();
         totalWashes++;
-        cycle.washId = this.id + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
+        cycle.washId = super.getId() + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
         // cal.add(Calendar.DAY_OF_MONTH, 2);
         cal.add(Calendar.SECOND, 4);
         cycle.expDelDate = cal.getTime();
@@ -73,7 +58,7 @@ public class Student extends Wash_Plan implements Laundry {
             washCyclesLeft--;
             updateAddCharge();
         }
-        System.out.println(this.name+" dropped the laundry:"+cycle.weight);
+        System.out.println(super.getName()+" dropped the laundry:"+cycle.weight);
     }
     
     public void receiveLaundry(Wash_Cycle receivedCycle) {
@@ -82,7 +67,7 @@ public class Student extends Wash_Plan implements Laundry {
                 cycle.received = true;
             }
         }
-        System.out.println(this.name+"recieved the laundry: "+receivedCycle.washId);
+        System.out.println(super.getName()+"recieved the laundry: "+receivedCycle.washId);
     }
 
     public void refreshCycles() {
@@ -90,14 +75,11 @@ public class Student extends Wash_Plan implements Laundry {
             if(Calendar.getInstance().getTime().after(cycle.expDelDate))
                 cycle.status = true;
         }
-        System.out.println("refreshed cycles for "+ this.name);
+        System.out.println("refreshed cycles for "+ super.getName());
     }
 
-    Student(String name, String id, String hostel, String planName) {
-        super(planName);
-        this.name = name;
-        this.id = id;
-        this.hostel = hostel;
+    StudentAccount(String name, String id, String hostel, String planName) {
+        super(name, id, hostel, planName);
 //        this.plan = Admin.PlansList.getPlan(planName);
         this.balance = this.getRatePerCycle() * this.getNoOfCycles();
         washCyclesLeft = this.getNoOfCycles();

@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Wash_Cycle extends Student {
+public class Wash_Cycle extends StudentAccount {
     protected int washNo=0;
     protected String washId;// private to protected
     protected float weight;
