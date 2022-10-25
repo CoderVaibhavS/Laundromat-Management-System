@@ -1,6 +1,7 @@
 import java.util.Date;
 
 public class Wash_Cycle extends Student {
+    protected int washNo=0;
     protected String washId;// private to protected
     protected float weight;
     protected boolean status;  // status 1 for clothes ready
@@ -10,7 +11,7 @@ public class Wash_Cycle extends Student {
 
     Wash_Cycle(String name, String id, String hostel, String planName) {
         super(name, id, hostel, planName);
-        super.washNo += 1;
+        washNo = super.totalWashes + 1;
     }
 
     String getWashId() {

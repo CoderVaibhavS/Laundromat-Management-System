@@ -1,6 +1,15 @@
 
 
 public class Main {
+    public static void delay(int n){
+        try {
+            System.out.println("Delay for "+n+" seconds");
+            Thread.sleep(n*1000); //delay for n seconds(wash time during testing)
+        } 
+        catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
+    }
     public static void main(String[] args) {
 //        adding wash plans to admin's plans list
         Admin.PlansList.addPlan("F_4", 4, 185, "Wash + Dry + Fold");
@@ -14,27 +23,33 @@ public class Main {
 
 //        student added to admin's student list after registering
         Admin.StudentsList.addStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4");
-        
-        Student vaibhav = Admin.students.get(0);
-        //dropping laundry
+        Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "I_4");
+        Student vaibhav=Admin.students.get(0);
+        Student rudra=Admin.students.get(1);
         vaibhav.dropLaundry(5);
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);//checking status afterjust after dropping
-        System.out.println("Please wait while we are washing");
-        
-        try {
-            Thread.sleep(4000); //delay for 4 seconds(wash time during testing)
-        } 
-        catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-        
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);    //check status before refresh
-        vaibhav.refreshCycles();    //refresh
-        System.out.println("-----------------After Refreshing---------------");
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);    //check status after refresh
+        vaibhav.refreshCycles();
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
+        delay(4);
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
+        vaibhav.refreshCycles();
+        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
         vaibhav.receiveLaundry(vaibhav.listOfWash_Cycles.get(0));
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).received);  //receive status after receiving
-        System.out.println(vaibhav.getBalance());
-        System.out.println(Admin.students.get(0).getName());
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(7);
+        rudra.dropLaundry(5);
+        rudra.dropLaundry(10);
+        rudra.dropLaundry(5);
+        delay(5);
+        rudra.receiveLaundry(rudra.listOfWash_Cycles.get(11));
+        System.out.println(rudra.totalWashes);
+        System.out.println(rudra.getRatePerCycle()*rudra.getNoOfCycles() + " + " + rudra.getAddCharge() + " = " + rudra.getBalance());
+        
     }
 }

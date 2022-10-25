@@ -36,11 +36,14 @@ public class Admin {
         public static void addStudent(String name, String id, String hostel, String planName) {
             Student student = new Student(name, id, hostel, planName);
             students.add(student);
+        System.out.println("New Student registered: "+name);
         }
 
 //        removes a student from list on matching his/her id if the student opts out
         public static void removeStudent(String studentId) {
             students.removeIf(student -> student.getId().equals(studentId));
+        System.out.println("Student removed: "+studentId);
+
         }
     }
 }
