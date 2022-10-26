@@ -1,5 +1,4 @@
 
-
 public class Main {
     public static void delay(int n){
         try {
@@ -23,7 +22,7 @@ public class Main {
 
 //        student added to admin's student list after registering
         Admin.StudentsList.addStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4");
-        Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "I_4");
+        Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Gandhi", "I_4");
         StudentAccount vaibhav=Admin.students.get(0);
         StudentAccount rudra=Admin.students.get(1);
         vaibhav.dropLaundry(5);

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 interface LaundryAccount{
     public void updateAddCharge();      // adding 20% extra if extra cycles are used
@@ -41,24 +39,25 @@ public class StudentAccount extends StudentProfile implements Laundry {
         cycle.weight = weight;
         cycle.status = false;
         cycle.received = false;
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        cycle.placeDate = cal.getTime();
+        // Calendar cal = Calendar.getInstance();
+        // cal.setTime(new Date());
+        // cycle.placeDate = cal.getTime();
         totalWashes++;
         cycle.washId = super.getId() + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
         // cal.add(Calendar.DAY_OF_MONTH, 2);
-        cal.add(Calendar.SECOND, 4);
-        cycle.expDelDate = cal.getTime();
+        // cal.add(Calendar.SECOND, 4);
+        // cycle.expDelDate = cal.getTime();
         washCyclesLeft--;
-        listOfWash_Cycles.add(cycle);
         updateAddCharge();
         if(weight > 6) {
-//            if weight limit exceeded, count an extra cycle
+            //            if weight limit exceeded, count an extra cycle
             totalWashes++;
             washCyclesLeft--;
             updateAddCharge();
         }
         System.out.println(super.getName()+" dropped the laundry:"+cycle.weight);
+        cycle.scheduleDel();
+        listOfWash_Cycles.add(cycle);
     }
     
     public void receiveLaundry(Wash_Cycle receivedCycle) {
@@ -67,7 +66,7 @@ public class StudentAccount extends StudentProfile implements Laundry {
                 cycle.received = true;
             }
         }
-        System.out.println(super.getName()+"recieved the laundry: "+receivedCycle.washId);
+        System.out.println(super.getName()+" recieved the laundry: "+receivedCycle.washId);
     }
 
     public void refreshCycles() {
