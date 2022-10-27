@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 
 public class StudentProfile extends Wash_Plan {
-    public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
     private String name;
     private String id;
     private String hostel;

@@ -11,7 +11,7 @@ interface Laundry {
 }
 
 public class StudentAccount extends StudentProfile implements Laundry {
-
+    public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
     private int balance;    // total semester balance including the plan and additional charges
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
