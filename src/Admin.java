@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Admin {
+public class Admin extends User {
     private static int revenue;
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
-    public static ArrayList<StudentAccount> students = new ArrayList<>();
+    public static ArrayList<Student> students = new ArrayList<>();
     public static int getRevenue() { return revenue; }
 
     static class PlansList {
@@ -34,7 +34,7 @@ public class Admin {
     static class StudentsList {
 //        adds a new student after registering
         public static void addStudent(String name, String id, String hostel, String planName) {
-            StudentAccount student = new StudentAccount(name, id, hostel, planName);
+            Student student = new Student(name, id, hostel, planName);
             students.add(student);
         }
 

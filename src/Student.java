@@ -1,17 +1,34 @@
 import java.util.*;
 
 interface LaundryAccount{
-    public void updateAddCharge();      // adding 20% extra if extra cycles are used
+    void updateAddCharge();      // adding 20% extra if extra cycles are used
 }
 
 interface Laundry {
-    public void dropLaundry(float weight);
-    public void receiveLaundry(Wash_Cycle receivedCycle);
-    public void refreshCycles();
+    void dropLaundry(float weight);
+    void receiveLaundry(Wash_Cycle receivedCycle);
+    void refreshCycles();
 }
 
-public class StudentAccount extends StudentProfile implements Laundry {
+public class Student extends User implements Laundry {
     public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
+    private String name;
+    final String id;
+    final String hostel;
+    Wash_Plan plan;
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public String getHostel() {
+        return this.hostel;
+    }
+
     private int balance;    // total semester balance including the plan and additional charges
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
@@ -27,14 +44,14 @@ public class StudentAccount extends StudentProfile implements Laundry {
 
     public void updateAddCharge() {
         if(washCyclesLeft < 0) {
-            balance += 1.2*this.getRatePerCycle();
-            addCharge += 1.2*this.getRatePerCycle();
+            balance += 1.2*plan.getRatePerCycle();
+            addCharge += 1.2*plan.getRatePerCycle();
         }
     }
 
     public void dropLaundry(float weight) {
 
-        Wash_Cycle cycle = new Wash_Cycle(super.getName(), super.getId(), super.getHostel(), super.getName());
+        Wash_Cycle cycle = new Wash_Cycle(name, id, hostel, plan.getName());
         
         cycle.weight = weight;
         cycle.status = false;
@@ -43,7 +60,7 @@ public class StudentAccount extends StudentProfile implements Laundry {
         // cal.setTime(new Date());
         // cycle.placeDate = cal.getTime();
         totalWashes++;
-        cycle.washId = super.getId() + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
+        cycle.washId = id + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
         // cal.add(Calendar.DAY_OF_MONTH, 2);
         // cal.add(Calendar.SECOND, 4);
         // cycle.expDelDate = cal.getTime();
@@ -55,7 +72,7 @@ public class StudentAccount extends StudentProfile implements Laundry {
             washCyclesLeft--;
             updateAddCharge();
         }
-        System.out.println(super.getName()+" dropped the laundry:"+cycle.weight);
+        System.out.println(name + " dropped the laundry:" + cycle.weight);
         cycle.scheduleDel();
         listOfWash_Cycles.add(cycle);
     }
@@ -66,7 +83,7 @@ public class StudentAccount extends StudentProfile implements Laundry {
                 cycle.received = true;
             }
         }
-        System.out.println(super.getName()+" recieved the laundry: "+receivedCycle.washId);
+        System.out.println(name + " received the laundry: " + receivedCycle.washId);
     }
 
     public void refreshCycles() {
@@ -74,13 +91,16 @@ public class StudentAccount extends StudentProfile implements Laundry {
             if(Calendar.getInstance().getTime().after(cycle.expDelDate))
                 cycle.status = true;
         }
-        System.out.println("refreshed cycles for "+ super.getName());
+        System.out.println("refreshed cycles for "+ getName());
     }
 
-    StudentAccount(String name, String id, String hostel, String planName) {
-        super(name, id, hostel, planName);
+    Student(String name, String id, String hostel, String planName) {
+        this.name = name;
+        this.id = id;
+        this.hostel = hostel;
+        this.plan = new Wash_Plan(planName);
 //        this.plan = Admin.PlansList.getPlan(planName);
-        this.balance = this.getRatePerCycle() * this.getNoOfCycles();
-        washCyclesLeft = this.getNoOfCycles();
+        this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
+        washCyclesLeft = plan.getNoOfCycles();
     }
 }

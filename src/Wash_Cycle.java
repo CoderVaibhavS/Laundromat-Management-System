@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.Calendar;
 
-public class Wash_Cycle extends StudentAccount{
+public class Wash_Cycle extends Student{
     protected int washNo=0;
     protected String washId;// private to protected
     protected float weight;

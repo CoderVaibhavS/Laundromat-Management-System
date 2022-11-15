@@ -23,8 +23,8 @@ public class Main {
 //        student added to admin's student list after registering
         Admin.StudentsList.addStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4");
         Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Gandhi", "I_4");
-        StudentAccount vaibhav=Admin.students.get(0);
-        StudentAccount rudra=Admin.students.get(1);
+        Student vaibhav=Admin.students.get(0);
+        Student rudra=Admin.students.get(1);
         vaibhav.dropLaundry(5);
         vaibhav.refreshCycles();
         System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
@@ -48,7 +48,7 @@ public class Main {
         delay(5);
         rudra.receiveLaundry(rudra.listOfWash_Cycles.get(11));
         System.out.println(rudra.totalWashes);
-        System.out.println(rudra.getRatePerCycle()*rudra.getNoOfCycles() + " + " + rudra.getAddCharge() + " = " + rudra.getBalance());
+        System.out.println(rudra.plan.getRatePerCycle()*rudra.plan.getNoOfCycles() + " + " + rudra.getAddCharge() + " = " + rudra.getBalance());
         
     }
 }
