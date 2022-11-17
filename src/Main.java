@@ -21,10 +21,12 @@ public class Main {
         Admin.PlansList.addPlan("I_15", 15, 196, "Wash + Dry + Iron");
 
 //        student added to admin's student list after registering
-        Admin.StudentsList.addStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4");
-        Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Gandhi", "I_4");
-        Student vaibhav=Admin.students.get(0);
-        Student rudra=Admin.students.get(1);
+        // Admin.StudentsList.addStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4");
+        // Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Gandhi", "I_4");
+        StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
+        StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
+        Student vaibhav=Admin.students.get("2021A7PS2227P");
+        Student rudra=Admin.students.get("2021A7PS0708P");
         vaibhav.dropLaundry(5);
         vaibhav.refreshCycles();
         System.out.println(vaibhav.listOfWash_Cycles.get(0).status);

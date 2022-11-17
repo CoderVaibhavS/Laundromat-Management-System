@@ -12,7 +12,7 @@ interface Laundry {
 
 public class Student extends User implements Laundry {
     public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
-    private String name;
+    final private String name;
     final String id;
     final String hostel;
     Wash_Plan plan;
@@ -51,7 +51,7 @@ public class Student extends User implements Laundry {
 
     public void dropLaundry(float weight) {
 
-        Wash_Cycle cycle = new Wash_Cycle(name, id, hostel, plan.getName());
+        Wash_Cycle cycle = new Wash_Cycle(id);
         
         cycle.weight = weight;
         cycle.status = false;
@@ -94,7 +94,8 @@ public class Student extends User implements Laundry {
         System.out.println("refreshed cycles for "+ getName());
     }
 
-    Student(String name, String id, String hostel, String planName) {
+    Student(String name, String id, String hostel, String planName, String password) {
+        super(id,password);
         this.name = name;
         this.id = id;
         this.hostel = hostel;

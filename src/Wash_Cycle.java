@@ -1,7 +1,8 @@
 import java.util.Date;
 import java.util.Calendar;
 
-public class Wash_Cycle extends Student{
+public class Wash_Cycle{
+    Student associatedStudent;
     protected int washNo=0;
     protected String washId;// private to protected
     protected float weight;
@@ -9,11 +10,12 @@ public class Wash_Cycle extends Student{
     protected boolean received; // true when laundry received
     protected Date placeDate;    /* Date.now() when the wash order is placed */
     protected Date expDelDate;   /* Date estimated by admin after the order is collected (+2 days in this case) */
-    private int delTime = HostelDelTime.hostelDelTime.get(this.getHostel());
-    Wash_Cycle(String name, String id, String hostel, String planName) {
-        super(name, id, hostel, planName);
-        washNo = super.totalWashes + 1;
+    Wash_Cycle(String id) {
+        associatedStudent = Admin.students.get(id);
+        // super(name, id, hostel, planName);
+        washNo = associatedStudent.totalWashes + 1;
     }
+    private int delTime = HostelDelTime.hostelDelTime.get(associatedStudent.getHostel());
 
     protected void scheduleDel(){
         

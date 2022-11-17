@@ -1,11 +1,12 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Admin extends User {
     private static int revenue;
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
-    public static ArrayList<Student> students = new ArrayList<>();
+    // public static ArrayList<Student> students = new ArrayList<>();
+    public static Map<String,Student> students = new HashMap<String,Student>();
     public static int getRevenue() { return revenue; }
 
     static class PlansList {
@@ -33,14 +34,13 @@ public class Admin extends User {
 
     static class StudentsList {
 //        adds a new student after registering
-        public static void addStudent(String name, String id, String hostel, String planName) {
-            Student student = new Student(name, id, hostel, planName);
-            students.add(student);
+        public static void addStudent(Student student){
+            students.put(student.userId,student);
         }
 
 //        removes a student from list on matching his/her id if the student opts out
         public static void removeStudent(String studentId) {
-            students.removeIf(student -> student.getId().equals(studentId));
+            students.remove(studentId);
         }
     }
 }
