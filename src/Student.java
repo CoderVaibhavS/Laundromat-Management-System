@@ -69,6 +69,21 @@ public class Student extends User implements Laundry {
         System.out.println(name + " dropped the laundry:" + cycle.weight);
         cycle.scheduleDel();
         listOfWash_Cycles.add(cycle);
+
+        if(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) > Admin.weekNo) {
+            HashMap map = new HashMap<String, Integer>();
+            map.put(id,1);
+            Admin.weeklyRecord.add(map);
+            Admin.weekNo++;
+        }
+        else {
+            if(Admin.weeklyRecord.get(Admin.weekNo).get(id) == null) {
+                Admin.weeklyRecord.get(Admin.weekNo).put(id, 1);
+            }
+            else {
+                Admin.weeklyRecord.get(Admin.weekNo).replace(id, Admin.weeklyRecord.get(Admin.weekNo).get(id)+1);
+            }
+        }
     }
     
     public void receiveLaundry(Wash_Cycle receivedCycle) {

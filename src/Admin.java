@@ -6,8 +6,9 @@ public class Admin extends User {
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
     public static Map<String,Student> students = new HashMap<>();
+    static int weekNo = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) - 1;
 //    weekly tracking
-    public static ArrayList<Map<String, Integer>> weeklyRecord = new ArrayList<>();
+    public static ArrayList<HashMap<String, Integer>> weeklyRecord = new ArrayList<>();
     public static int getRevenue() { return revenue; }
 
     static class PlansList {

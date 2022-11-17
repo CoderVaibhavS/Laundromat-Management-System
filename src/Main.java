@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void delay(int n){
@@ -26,7 +28,9 @@ public class Main {
         StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
         StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
         StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
-
+        HashMap<String, Integer> mp = new HashMap<>();
+        Admin.weeklyRecord.set(0, mp);
+        System.out.println(Admin.weeklyRecord);
 
 //        StudentAuth.logoutStudent();
 //        Student vaibhav = StudentAuth.loginStudent("2021A7PS2227P", "1234");

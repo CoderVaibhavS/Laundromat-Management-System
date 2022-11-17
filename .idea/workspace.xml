@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72417e1a-20fe-44e4-9cbc-7d857ab11da7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin$StudentsList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin$StudentsList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Wash_Cycle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Wash_Cycle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin$PlansList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin$StudentsList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HostelDelTime$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HostelDelTime.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laundry.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LaundryAccount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentAuth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentAuth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wash_Cycle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wash_Cycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wash_Cycle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wash_Plan.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wash_Plan_Methods.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../../task6.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +31,10 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectId" id="2GPAbBKplCzftlYOf7Bbl5UzR25" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -111,7 +95,8 @@
       <workItem from="1667910729030" duration="2161000" />
       <workItem from="1668106237603" duration="2069000" />
       <workItem from="1668528827876" duration="2454000" />
-      <workItem from="1668674893408" duration="8477000" />
+      <workItem from="1668674893408" duration="8731000" />
+      <workItem from="1668700878967" duration="4398000" />
     </task>
     <servers />
   </component>
