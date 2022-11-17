@@ -25,32 +25,27 @@ public class Main {
         // Admin.StudentsList.addStudent("Rudra Goyal", "2021A7PS0708P", "Gandhi", "I_4");
         StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
         StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
-        Student vaibhav=Admin.students.get("2021A7PS2227P");
-        Student rudra=Admin.students.get("2021A7PS0708P");
-        vaibhav.dropLaundry(5);
-        vaibhav.refreshCycles();
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
-        delay(4);
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
-        vaibhav.refreshCycles();
-        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
-        vaibhav.receiveLaundry(vaibhav.listOfWash_Cycles.get(0));
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(7);
-        rudra.dropLaundry(5);
-        rudra.dropLaundry(10);
-        rudra.dropLaundry(5);
-        delay(5);
-        rudra.receiveLaundry(rudra.listOfWash_Cycles.get(11));
-        System.out.println(rudra.totalWashes);
-        System.out.println(rudra.plan.getRatePerCycle()*rudra.plan.getNoOfCycles() + " + " + rudra.getAddCharge() + " = " + rudra.getBalance());
-        
+        StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
+
+
+//        StudentAuth.logoutStudent();
+//        Student vaibhav = StudentAuth.loginStudent("2021A7PS2227P", "1234");
+//        Student rudra = Admin.students.get("2021A7PS0708P");
+//
+//        vaibhav.dropLaundry(5);
+//        vaibhav.refreshCycles();
+//        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
+//        delay(4);
+//        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
+//        vaibhav.refreshCycles();
+//        System.out.println(vaibhav.listOfWash_Cycles.get(0).status);
+//        vaibhav.receiveLaundry(vaibhav.listOfWash_Cycles.get(0));
+//
+//        rudra.dropLaundry(5);
+//        rudra.dropLaundry(10);
+//        delay(5);
+//        rudra.receiveLaundry(rudra.listOfWash_Cycles.get(1));
+//        System.out.println(rudra.totalWashes);
+//        System.out.println(rudra.plan.getRatePerCycle()*rudra.plan.getNoOfCycles() + " + " + rudra.getAddCharge() + " = " + rudra.getBalance());
     }
 }

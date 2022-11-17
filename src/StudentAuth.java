@@ -1,27 +1,35 @@
 public class StudentAuth{
-    public String message;
+    public static String message;
 
     public static void registerStudent(String name, String id, String hostel, String planName, String password){
+        if(Admin.students.get(id) != null) {
+            message = "User with id: " + id + " already exists!";
+            System.out.println(message);
+            return;
+        }
         Student newStudent = new Student(name,id,hostel,planName,password);
         Admin.StudentsList.addStudent(newStudent);
     }
-    public Student loginStudent(String id, String password){
-        if(Admin.students.get(id) ==null){
-            message = "User does not exist";
-            return null;
+    public static Student loginStudent(String id, String password){
+        if(Admin.students.get(id) == null){
+            message = "User does not exist!";
         }
-        else if(Admin.students.get(id).password != password){
-            message = "Incorrect Password";
-            return null;
-        }
-        else if(Admin.students.get(id).password == password){
-            message = "Login Successful";
+        else if(Admin.students.get(id).password.equals(password)){
+            message = "Login Successful!";
+            System.out.println(message);
             return Admin.students.get(id);
-        }
+            }
         else{
-            message = "unknown error";
-            return null;
+            message = "Incorrect Password!";
         }
 
+        System.out.println(message);
+        return null;
+    }
+
+    public static Student logoutStudent() {
+        message = "Logged Out!";
+        System.out.println(message);
+        return null;
     }
 }

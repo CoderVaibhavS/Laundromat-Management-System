@@ -56,14 +56,8 @@ public class Student extends User implements Laundry {
         cycle.weight = weight;
         cycle.status = false;
         cycle.received = false;
-        // Calendar cal = Calendar.getInstance();
-        // cal.setTime(new Date());
-        // cycle.placeDate = cal.getTime();
         totalWashes++;
         cycle.washId = id + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
-        // cal.add(Calendar.DAY_OF_MONTH, 2);
-        // cal.add(Calendar.SECOND, 4);
-        // cycle.expDelDate = cal.getTime();
         washCyclesLeft--;
         updateAddCharge();
         if(weight > 6) {
@@ -99,8 +93,8 @@ public class Student extends User implements Laundry {
         this.name = name;
         this.id = id;
         this.hostel = hostel;
-        this.plan = new Wash_Plan(planName);
-//        this.plan = Admin.PlansList.getPlan(planName);
+//        this.plan = new Wash_Plan(planName);
+        this.plan = Admin.PlansList.getPlan(planName);
         this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
         washCyclesLeft = plan.getNoOfCycles();
     }

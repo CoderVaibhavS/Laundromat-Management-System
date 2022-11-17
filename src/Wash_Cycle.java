@@ -14,8 +14,9 @@ public class Wash_Cycle{
         associatedStudent = Admin.students.get(id);
         // super(name, id, hostel, planName);
         washNo = associatedStudent.totalWashes + 1;
+        delTime = HostelDelTime.hostelDelTime.get(associatedStudent.getHostel());
     }
-    private int delTime = HostelDelTime.hostelDelTime.get(associatedStudent.getHostel());
+    private int delTime;
 
     protected void scheduleDel(){
         

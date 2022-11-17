@@ -5,8 +5,9 @@ public class Admin extends User {
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
-    // public static ArrayList<Student> students = new ArrayList<>();
-    public static Map<String,Student> students = new HashMap<String,Student>();
+    public static Map<String,Student> students = new HashMap<>();
+//    weekly tracking
+    public static ArrayList<Map<String, Integer>> weeklyRecord = new ArrayList<>();
     public static int getRevenue() { return revenue; }
 
     static class PlansList {
