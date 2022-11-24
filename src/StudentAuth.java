@@ -9,18 +9,22 @@ public class StudentAuth{
         }
         Student newStudent = new Student(name,id,hostel,planName,password);
         Admin.StudentsList.addStudent(newStudent);
+        System.out.println("User with id: " + id + " successfully registered!");
     }
-    public static Student loginStudent(String id, String password){
+    public static Student loginStudent(String id){
         if(Admin.students.get(id) == null){
-            message = "User does not exist!";
+            message = "User with " + id + " does not exist!";
         }
-        else if(Admin.students.get(id).password.equals(password)){
-            message = "Login Successful!";
-            System.out.println(message);
+//        else if(Admin.students.get(id).password.equals(password)){
+//            message = "Login Successful!";
+//            System.out.println(message);
+//            return Admin.students.get(id);
+//            }
+//        else{
+//            message = "Incorrect Password!";
+//        }
+        else {
             return Admin.students.get(id);
-            }
-        else{
-            message = "Incorrect Password!";
         }
 
         System.out.println(message);

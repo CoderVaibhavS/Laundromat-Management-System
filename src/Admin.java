@@ -6,15 +6,16 @@ public class Admin extends User {
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
     public static Map<String,Student> students = new HashMap<>();
-    static int weekNo = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) - 1;
+    static int yearWeekNo = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) - 1;
+    static int weekNo = 0;
 //    weekly tracking
     public static ArrayList<HashMap<String, Integer>> weeklyRecord = new ArrayList<>();
     public static int getRevenue() { return revenue; }
 
     static class PlansList {
         //    adds a new plan
-        public static void addPlan(String name, int noOfCycles, int ratePerCycle, String desc) {
-            Wash_Plan plan = new Wash_Plan(name, noOfCycles, ratePerCycle, desc);
+        public static void addPlan(String name, int noOfCycles, int ratePerCycle, boolean iron, String desc) {
+            Wash_Plan plan = new Wash_Plan(name, noOfCycles, ratePerCycle, iron, desc);
             washPlans.add(plan);
         }
 

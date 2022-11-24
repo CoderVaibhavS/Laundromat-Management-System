@@ -51,44 +51,43 @@ public class Student extends User implements Laundry {
 
     public void dropLaundry(float weight) {
 
-        Wash_Cycle cycle = new Wash_Cycle(id);
-        
-        cycle.weight = weight;
-        cycle.status = false;
-        cycle.received = false;
+        Wash_Cycle cycle = new Wash_Cycle(id, weight);
         totalWashes++;
         cycle.washId = id + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
         washCyclesLeft--;
         updateAddCharge();
         if(weight > 6) {
-            //            if weight limit exceeded, count an extra cycle
+            // if weight limit exceeded, charge extra
             totalWashes++;
-            washCyclesLeft--;
-            updateAddCharge();
+            float extraWeight = weight - 6;
+            int extraCharge = (int)(extraWeight * plan.getRatePerCycle()*1.2/6);
+            addCharge += extraCharge;
+            System.out.println("You dropped " + extraWeight + " kg extra, so you are charged Rs" + extraCharge + " extra.");
         }
-        System.out.println(name + " dropped the laundry:" + cycle.weight);
+        System.out.print("Dropped the laundry succesfully! ");
         cycle.scheduleDel();
         listOfWash_Cycles.add(cycle);
 
-        if(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) > Admin.weekNo) {
+        if(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) > Admin.yearWeekNo) {
             HashMap map = new HashMap<String, Integer>();
             map.put(id,1);
             Admin.weeklyRecord.add(map);
+            Admin.yearWeekNo++;
             Admin.weekNo++;
         }
         else {
-            if(Admin.weeklyRecord.get(Admin.weekNo).get(id) == null) {
-                Admin.weeklyRecord.get(Admin.weekNo).put(id, 1);
+            if(Admin.weeklyRecord.get(Admin.weekNo - 1).get(id) == null) {
+                Admin.weeklyRecord.get(Admin.weekNo - 1).put(id, 1);
             }
             else {
-                Admin.weeklyRecord.get(Admin.weekNo).replace(id, Admin.weeklyRecord.get(Admin.weekNo).get(id)+1);
+                Admin.weeklyRecord.get(Admin.weekNo - 1).replace(id, Admin.weeklyRecord.get(Admin.weekNo - 1).get(id)+1);
             }
         }
     }
     
     public void receiveLaundry(Wash_Cycle receivedCycle) {
         for(Wash_Cycle cycle:listOfWash_Cycles){
-            if(cycle.equals(receivedCycle)&&cycle.status){
+            if(cycle.equals(receivedCycle) && cycle.washStatus){
                 cycle.received = true;
             }
         }
@@ -98,7 +97,7 @@ public class Student extends User implements Laundry {
     public void refreshCycles() {
         for(Wash_Cycle cycle : listOfWash_Cycles){
             if(Calendar.getInstance().getTime().after(cycle.expDelDate))
-                cycle.status = true;
+                cycle.washStatus = true;
         }
         System.out.println("refreshed cycles for "+ getName());
     }
