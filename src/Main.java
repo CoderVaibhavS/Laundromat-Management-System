@@ -1,16 +1,17 @@
 import java.util.*;
+import java.io.*;
 
 public class Main {
     public static void delay(int n){
         try {
             System.out.println("Delay for "+n+" seconds");
             Thread.sleep(n*1000); //delay for n seconds(wash time during testing)
-        } 
+        }
         catch (InterruptedException e) {
           Thread.currentThread().interrupt();
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        adding wash plans to admin's plans list
         Admin.PlansList.addPlan("F_4", 4, 185, false, "Wash + Dry + Fold");
         Admin.PlansList.addPlan("I_4", 4, 245, true, "Wash + Dry + Iron");
@@ -21,11 +22,42 @@ public class Main {
         Admin.PlansList.addPlan("F_15", 15, 150, false, "Wash + Dry + Fold");
         Admin.PlansList.addPlan("I_15", 15, 196, true, "Wash + Dry + Iron");
 
+        File f = new File("students.txt");
+        try {
+            f.createNewFile();
+        }
+        catch (Exception e) {
+        }
+
+        if (f.length() != 0) {
+            try {
+                FileInputStream fis = null;
+                fis = new FileInputStream("students.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                Student student = null;
+
+                while (fis.available() != 0) {
+                    student = (Student) ois.readObject();
+                    Admin.StudentsList.addStudent(student);
+                }
+                ois.close();
+                fis.close();
+            }
+            catch (Exception e) {
+                System.out.println("Error Occurred" + e);
+                e.printStackTrace();
+            }
+        }
+
         // ONLY FOR TESTING
         StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
-        Student vaibhav = StudentAuth.loginStudent("2021A7PS2227P");
-        vaibhav.dropLaundry(3);
+        StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
 
+        Student vaibhav = Admin.students.get("2021A7PS2227P");
+        vaibhav.dropLaundry(5);
+        vaibhav.dropLaundry(10);
+        System.out.println(vaibhav.totalWashes);
 
         while(true) {
             Scanner sc = new Scanner(System.in);

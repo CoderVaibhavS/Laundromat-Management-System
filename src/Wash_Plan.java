@@ -1,8 +1,10 @@
+import java.io.Serializable;
+
 interface Wash_Plan_Methods {
     public void updateRatePerCycle(int rate);
 }
 
-public class Wash_Plan implements Wash_Plan_Methods {
+public class Wash_Plan implements Wash_Plan_Methods, Serializable {
     private String name;
     private int noOfCycles;
     private int ratePerCycle;

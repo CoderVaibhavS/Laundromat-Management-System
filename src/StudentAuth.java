@@ -1,15 +1,47 @@
-public class StudentAuth{
+import java.io.*;
+
+public class StudentAuth implements Serializable {
     public static String message;
 
-    public static void registerStudent(String name, String id, String hostel, String planName, String password){
-        if(Admin.students.get(id) != null) {
-            message = "User with id: " + id + " already exists!";
-            System.out.println(message);
-            return;
+    public static void registerStudent(String name, String id, String hostel, String planName, String password) throws IOException{
+
+        File f = new File("students.txt");
+        try {
+            f.createNewFile();
         }
-        Student newStudent = new Student(name,id,hostel,planName,password);
-        Admin.StudentsList.addStudent(newStudent);
-        System.out.println("User with id: " + id + " successfully registered!");
+        catch (Exception e) {
+        }
+
+        // check if the student is already registered
+        if(Admin.students.get(id) != null) {
+            System.out.println("User with id: " + id + " already exists!");
+        }
+
+        // register the new student
+        else {
+            Student newStudent = new Student(name, id, hostel, planName, password);
+
+            try {
+                FileOutputStream fos = null;
+                fos = new FileOutputStream("students.txt", true);
+                if (f.length() == 0) {
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(newStudent);
+                    oos.close();
+                } else {
+                    MyObjectOutputStream oos = null;
+                    oos = new MyObjectOutputStream(fos);
+                    oos.writeObject(newStudent);
+                    oos.close();
+                }
+                System.out.println("User with id: " + id + " successfully registered!");
+                fos.close();
+            } catch (Exception e) {
+                System.out.println("Exception occurred: " + e);
+            }
+
+            Admin.StudentsList.addStudent(newStudent);
+        }
     }
     public static Student loginStudent(String id){
         if(Admin.students.get(id) == null){

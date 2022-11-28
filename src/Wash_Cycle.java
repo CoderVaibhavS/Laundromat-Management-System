@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Calendar;
 
-public class Wash_Cycle{
+public class Wash_Cycle implements Serializable {
     Student associatedStudent;
     protected int washNo = 0;
     protected String washId;// private to protected

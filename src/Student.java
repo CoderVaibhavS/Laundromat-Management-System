@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
 interface LaundryAccount{
@@ -10,7 +14,7 @@ interface Laundry {
     void refreshCycles();
 }
 
-public class Student extends User implements Laundry {
+public class Student extends User implements Laundry, Serializable {
     public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
     final private String name;
     final String id;
@@ -29,12 +33,26 @@ public class Student extends User implements Laundry {
         return this.hostel;
     }
 
+    public String toString() {
+        return getName() + " " + getId();
+    }
+
     private int balance;    // total semester balance including the plan and additional charges
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
     private int washCyclesLeft;
 //    Wash_Plan plan;
 
+    Student(String name, String id, String hostel, String planName, String password) {
+        super(id,password);
+        this.name = name;
+        this.id = id;
+        this.hostel = hostel;
+//        this.plan = new Wash_Plan(planName);
+        this.plan = Admin.PlansList.getPlan(planName);
+        this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
+        washCyclesLeft = plan.getNoOfCycles();
+    }
 
     public int getBalance() {
         return this.balance;
@@ -47,6 +65,7 @@ public class Student extends User implements Laundry {
             balance += 1.2*plan.getRatePerCycle();
             addCharge += 1.2*plan.getRatePerCycle();
         }
+        Admin.StudentsList.updateStudents();
     }
 
     public void dropLaundry(float weight) {
@@ -58,7 +77,6 @@ public class Student extends User implements Laundry {
         updateAddCharge();
         if(weight > 6) {
             // if weight limit exceeded, charge extra
-            totalWashes++;
             float extraWeight = weight - 6;
             int extraCharge = (int)(extraWeight * plan.getRatePerCycle()*1.2/6);
             addCharge += extraCharge;
@@ -83,14 +101,17 @@ public class Student extends User implements Laundry {
                 Admin.weeklyRecord.get(Admin.weekNo - 1).replace(id, Admin.weeklyRecord.get(Admin.weekNo - 1).get(id)+1);
             }
         }
+
+        Admin.StudentsList.updateStudents();
     }
-    
+
     public void receiveLaundry(Wash_Cycle receivedCycle) {
         for(Wash_Cycle cycle:listOfWash_Cycles){
             if(cycle.equals(receivedCycle) && cycle.washStatus){
                 cycle.received = true;
             }
         }
+        Admin.StudentsList.updateStudents();
         System.out.println(name + " received the laundry: " + receivedCycle.washId);
     }
 
@@ -99,17 +120,7 @@ public class Student extends User implements Laundry {
             if(Calendar.getInstance().getTime().after(cycle.expDelDate))
                 cycle.washStatus = true;
         }
+        Admin.StudentsList.updateStudents();
         System.out.println("refreshed cycles for "+ getName());
-    }
-
-    Student(String name, String id, String hostel, String planName, String password) {
-        super(id,password);
-        this.name = name;
-        this.id = id;
-        this.hostel = hostel;
-//        this.plan = new Wash_Plan(planName);
-        this.plan = Admin.PlansList.getPlan(planName);
-        this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
-        washCyclesLeft = plan.getNoOfCycles();
     }
 }

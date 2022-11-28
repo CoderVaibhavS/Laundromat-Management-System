@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Admin extends User {
@@ -38,12 +41,43 @@ public class Admin extends User {
     static class StudentsList {
 //        adds a new student after registering
         public static void addStudent(Student student){
-            students.put(student.userId,student);
+            students.put(student.id, student);
         }
 
 //        removes a student from list on matching his/her id if the student opts out
         public static void removeStudent(String studentId) {
             students.remove(studentId);
+        }
+
+        public static void updateStudents() {
+            File f = new File("students.txt");
+            f.delete();
+            try {
+                f.createNewFile();
+            }
+            catch (Exception e) {
+            }
+
+            Iterator<Student> itr = students.values().iterator();
+            while (itr.hasNext()) {
+                try {
+                    FileOutputStream fos = null;
+                    fos = new FileOutputStream("students.txt", true);
+                    if (f.length() == 0) {
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+                        oos.writeObject(itr.next());
+                        oos.close();
+                    } else {
+                        MyObjectOutputStream oos = null;
+                        oos = new MyObjectOutputStream(fos);
+                        oos.writeObject(itr.next());
+                        oos.close();
+                    }
+                    fos.close();
+                } catch (Exception e) {
+                    System.out.println("Exception occurred: " + e);
+                }
+            }
         }
     }
 }

@@ -7,7 +7,8 @@ public class User {
         this.password = password;
         isLoggedIn = true;
     }
+
+
     User(){
-        
     }
 }
