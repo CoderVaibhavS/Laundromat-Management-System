@@ -9,11 +9,41 @@ public class Admin extends User {
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
     public static Map<String,Student> students = new HashMap<>();
-    static int yearWeekNo = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) - 1;
-    static int weekNo = 0;
 //    weekly tracking
     public static ArrayList<HashMap<String, Integer>> weeklyRecord = new ArrayList<>();
     public static int getRevenue() { return revenue; }
+    static int weekNo = weeklyRecord.size();
+
+    public static void updateWeeklyRecord() {
+        File f = new File("weeklyrecord.txt");
+        f.delete();
+        try {
+            f.createNewFile();
+        }
+        catch (Exception e) {
+        }
+
+        for(HashMap<String, Integer> map: weeklyRecord) {
+            try {
+                FileOutputStream fos = null;
+                fos = new FileOutputStream("weeklyrecord.txt", true);
+                if (f.length() == 0) {
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(map);
+                    oos.close();
+                } else {
+                    MyObjectOutputStream oos = null;
+                    oos = new MyObjectOutputStream(fos);
+                    oos.writeObject(map);
+                    oos.close();
+                }
+                fos.close();
+            } catch (Exception e) {
+                System.out.println("Exception occurred: " + e);
+            }
+        }
+
+    }
 
     static class PlansList {
         //    adds a new plan

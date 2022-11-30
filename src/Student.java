@@ -86,21 +86,20 @@ public class Student extends User implements Laundry, Serializable {
         cycle.scheduleDel();
         listOfWash_Cycles.add(cycle);
 
-        if(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) > Admin.yearWeekNo) {
+        if(Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == 1 && Admin.weekNo == Admin.weeklyRecord.size() || Admin.weeklyRecord.size() == 0) {
             HashMap map = new HashMap<String, Integer>();
             map.put(id,1);
             Admin.weeklyRecord.add(map);
-            Admin.yearWeekNo++;
-            Admin.weekNo++;
         }
         else {
-            if(Admin.weeklyRecord.get(Admin.weekNo - 1).get(id) == null) {
-                Admin.weeklyRecord.get(Admin.weekNo - 1).put(id, 1);
+            if(Admin.weeklyRecord.get(Admin.weekNo).get(id) == null) {
+                Admin.weeklyRecord.get(Admin.weekNo).put(id, 1);
             }
             else {
-                Admin.weeklyRecord.get(Admin.weekNo - 1).replace(id, Admin.weeklyRecord.get(Admin.weekNo - 1).get(id)+1);
+                Admin.weeklyRecord.get(Admin.weekNo).replace(id, Admin.weeklyRecord.get(Admin.weekNo).get(id)+1);
             }
         }
+        Admin.updateWeeklyRecord();
 
         Admin.StudentsList.updateStudents();
     }
