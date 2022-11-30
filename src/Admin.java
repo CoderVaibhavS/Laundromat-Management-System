@@ -15,6 +15,9 @@ public class Admin extends User {
     public static ArrayList<HashMap<String, Integer>> weeklyRecord = new ArrayList<>();
     public static int getRevenue() { return revenue; }
 
+    // Only one admin will exist at any time. Thus, no thread needed. However, many Student instances may try
+    // to run the methods in here simultaneously..
+
     static class PlansList {
         //    adds a new plan
         public static void addPlan(String name, int noOfCycles, int ratePerCycle, boolean iron, String desc) {
@@ -49,7 +52,7 @@ public class Admin extends User {
             students.remove(studentId);
         }
 
-        public static void updateStudents() {
+        synchronized public static void updateStudents() {
             File f = new File("students.txt");
             f.delete();
             try {

@@ -11,7 +11,7 @@ public class Main {
           Thread.currentThread().interrupt();
         }
     }
-    public static void main(String[] args) throws IOException {
+    synchronized public static void main(String[] args) throws IOException {
 //        adding wash plans to admin's plans list
         Admin.PlansList.addPlan("F_4", 4, 185, false, "Wash + Dry + Fold");
         Admin.PlansList.addPlan("I_4", 4, 245, true, "Wash + Dry + Iron");

@@ -14,13 +14,13 @@ interface Laundry {
     void refreshCycles();
 }
 
-public class Student extends User implements Laundry, Serializable {
+public class Student extends User implements Laundry, Serializable, Runnable {
     public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
     final private String name;
     final String id;
     final String hostel;
     Wash_Plan plan;
-
+    Thread studentThread;
     public String getName() {
         return this.name;
     }
@@ -52,6 +52,7 @@ public class Student extends User implements Laundry, Serializable {
         this.plan = Admin.PlansList.getPlan(planName);
         this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
         washCyclesLeft = plan.getNoOfCycles();
+        studentThread = new Thread(this, "Student thread " + id);
     }
 
     public int getBalance() {
@@ -66,6 +67,7 @@ public class Student extends User implements Laundry, Serializable {
             addCharge += 1.2*plan.getRatePerCycle();
         }
         Admin.StudentsList.updateStudents();
+
     }
 
     public void dropLaundry(float weight) {
@@ -122,5 +124,10 @@ public class Student extends User implements Laundry, Serializable {
         }
         Admin.StudentsList.updateStudents();
         System.out.println("refreshed cycles for "+ getName());
+    }
+
+    @Override
+    public void run() {
+
     }
 }
