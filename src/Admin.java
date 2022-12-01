@@ -4,13 +4,14 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Admin extends User {
-    private static int revenue;
+    private static int revenue = 0;
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();
 //    list of all registered students
     public static Map<String,Student> students = new HashMap<>();
 //    weekly tracking
     public static ArrayList<HashMap<String, Integer>> weeklyRecord = new ArrayList<>();
+    public static void updateRevenue(int amount) { revenue += amount; }
     public static int getRevenue() { return revenue; }
     static int weekNo = weeklyRecord.size();
 
@@ -47,14 +48,9 @@ public class Admin extends User {
 
     static class PlansList {
         //    adds a new plan
-        public static void addPlan(String name, int noOfCycles, int ratePerCycle, boolean iron, String desc) {
-            Wash_Plan plan = new Wash_Plan(name, noOfCycles, ratePerCycle, iron, desc);
+        public static void addPlan(String name, int noOfCycles, int ratePerCycle, float weight, boolean iron, String desc) {
+            Wash_Plan plan = new Wash_Plan(name, noOfCycles, ratePerCycle, weight, iron, desc);
             washPlans.add(plan);
-        }
-
-        //    removes a plan by matching its name from the arraylist of wash plans
-        public static void removePlan(String planName) {
-            washPlans.removeIf(plan -> plan.getName().equals(planName));
         }
 
         //    gets the whole plan object from its name
@@ -72,11 +68,6 @@ public class Admin extends User {
 //        adds a new student after registering
         public static void addStudent(Student student){
             students.put(student.id, student);
-        }
-
-//        removes a student from list on matching his/her id if the student opts out
-        public static void removeStudent(String studentId) {
-            students.remove(studentId);
         }
 
         public static void updateStudents() {

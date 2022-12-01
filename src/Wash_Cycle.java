@@ -4,11 +4,11 @@ import java.util.Calendar;
 
 public class Wash_Cycle implements Serializable {
     Student associatedStudent;
-    protected int washNo = 0;
+    private int washNo = 0;
     protected String washId;// private to protected
     protected float weight;
-    protected boolean washStatus = true;  // status 1 for clothes ready
-    protected boolean dryStatus=  true;
+    protected boolean washStatus = false;  // status 1 for clothes ready
+    protected boolean dryStatus = false;
     protected boolean F_or_I_Status = false;
     protected boolean received = false; // true when laundry received
     protected Date placeDate;    /* Date.now() when the wash order is placed */

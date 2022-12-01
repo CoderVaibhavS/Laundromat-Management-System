@@ -20,51 +20,39 @@ public class Student extends User implements Laundry, Serializable {
     final String id;
     final String hostel;
     Wash_Plan plan;
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getHostel() {
-        return this.hostel;
-    }
-
-    public String toString() {
-        return getName() + " " + getId();
-    }
-
     private int balance;    // total semester balance including the plan and additional charges
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
     private int washCyclesLeft;
-//    Wash_Plan plan;
 
     Student(String name, String id, String hostel, String planName, String password) {
         super(id,password);
         this.name = name;
         this.id = id;
         this.hostel = hostel;
-//        this.plan = new Wash_Plan(planName);
         this.plan = Admin.PlansList.getPlan(planName);
         this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
         washCyclesLeft = plan.getNoOfCycles();
+        Admin.updateRevenue(plan.getRatePerCycle()*plan.getNoOfCycles());
     }
 
-    public int getBalance() {
-        return this.balance;
-    }
+    public String getName() { return name; }
+
+    public String getId() { return id; }
+
+    public String getHostel() { return hostel; }
+
+    public String toString() { return name + " " + id; }
+
+    public int getBalance() { return balance; }
 
     public int getAddCharge() { return this.addCharge; }
 
-    public void updateAddCharge() {
-        if(washCyclesLeft < 0) {
-            balance += 1.2*plan.getRatePerCycle();
-            addCharge += 1.2*plan.getRatePerCycle();
-        }
+    // charged extra for extra wash used
+    public void updateAddCharge(int extraCharge) {
+        balance += extraCharge;
+        addCharge += extraCharge;
+        Admin.updateRevenue(extraCharge);
         Admin.StudentsList.updateStudents();
     }
 
@@ -74,15 +62,19 @@ public class Student extends User implements Laundry, Serializable {
         totalWashes++;
         cycle.washId = id + ((totalWashes<=9)?"00":"0") + Integer.toString(totalWashes);
         washCyclesLeft--;
-        updateAddCharge();
+        int extraCharge = 0;
+        if (washCyclesLeft < 0)
+            extraCharge += (int)1.2*plan.getRatePerCycle();
+
         if(weight > 6) {
             // if weight limit exceeded, charge extra
-            float extraWeight = weight - 6;
-            int extraCharge = (int)(extraWeight * plan.getRatePerCycle()*1.2/6);
-            addCharge += extraCharge;
+            float extraWeight = weight - plan.getWeight();
+            extraCharge += (int)(extraWeight * plan.getRatePerCycle()*1.2/plan.getWeight());
             System.out.println("You dropped " + extraWeight + " kg extra, so you are charged Rs" + extraCharge + " extra.");
         }
-        System.out.print("Dropped the laundry succesfully! ");
+        updateAddCharge(extraCharge);
+
+        System.out.print("Dropped the laundry succesfully!");
         cycle.scheduleDel();
         listOfWash_Cycles.add(cycle);
 

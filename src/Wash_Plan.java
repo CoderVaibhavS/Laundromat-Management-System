@@ -1,20 +1,19 @@
 import java.io.Serializable;
 
-interface Wash_Plan_Methods {
-    public void updateRatePerCycle(int rate);
-}
 
-public class Wash_Plan implements Wash_Plan_Methods, Serializable {
+public class Wash_Plan implements Serializable {
     private String name;
     private int noOfCycles;
     private int ratePerCycle;
+    private float weight;
     private boolean iron;
     private String desc;
 
-    Wash_Plan(String name, int noOfCycles, int ratePerCycle, boolean iron, String desc) {
+    Wash_Plan(String name, int noOfCycles, int ratePerCycle, float weight, boolean iron, String desc) {
         this.name = name;
         this.noOfCycles = noOfCycles;
         this.ratePerCycle = ratePerCycle;
+        this.weight = weight;
         this.desc = desc;
         this.iron = iron;
     }
@@ -30,7 +29,7 @@ public class Wash_Plan implements Wash_Plan_Methods, Serializable {
     }
 
     public String toString() {
-        return "Plan Name: " + name + " , No. of cycles: " + noOfCycles + " , Rate Per Cycle: " + ratePerCycle + " , Plan description: " + desc;
+        return "Plan Name: " + name + " , No. of cycles: " + noOfCycles + " , Rate Per Cycle: " + ratePerCycle + " , Weight per Cycle: " + weight + " , Plan description: " + desc;
     }
 
     public String getName() { return name; }
@@ -38,6 +37,5 @@ public class Wash_Plan implements Wash_Plan_Methods, Serializable {
     public int getRatePerCycle() { return ratePerCycle; }
     public String getDesc() { return desc; }
     public boolean ironORfold() { return iron; }
-
-    public void updateRatePerCycle(int rate) { this.ratePerCycle = rate; }
+    public float getWeight() { return weight; }
 }
