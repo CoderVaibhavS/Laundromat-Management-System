@@ -90,32 +90,32 @@ public class Main {
             switch (input) {
                 case "S":
                     System.out.print("Enter your id: ");
-                    String id = sc.nextLine();
+                    String id = sc.nextLine().toUpperCase();
                     System.out.print("Enter your name: ");
-                    String name = sc.nextLine();
+                    String name = sc.nextLine().toUpperCase();
                     System.out.print("Enter your password: ");
                     String password = sc.nextLine();
                     System.out.print("Enter your hostel name: ");
-                    String hostel = sc.nextLine();
+                    String hostel = sc.nextLine().toUpperCase();
                     System.out.println("Choose from the following washplans: ");
                     for (Wash_Plan plan: Admin.washPlans) {
                         System.out.println(plan);
                     }
                     System.out.print("Enter plan name: ");
-                    String plan = sc.nextLine();
+                    String plan = sc.nextLine().toUpperCase();
                     StudentAuth.registerStudent(name, id, hostel, plan, password);
                     break;
 
                 case "D":
                     System.out.print("Enter your id: ");
-                    id = sc.next();
+                    id = sc.next().toUpperCase();
                     System.out.print("Enter the weight of laundry in kgs: ");
                     int weight = sc.nextInt();
                     System.out.print("Enter the date in DD/MM/YYYY format: ");
                     Date d = new Date();
                     String date = sc.next();
                     System.out.print("Enter the day: ");
-                    String day = sc.next();
+                    String day = sc.next().toUpperCase();
                     Student student = StudentAuth.loginStudent(id);
                     if (!HostelDelTime.hostelDropDay.get(student.hostel).equals(day)) {
                         System.out.println("You are not allowed to drop laundry on " + day + ". Please drop on your allotted day.");
@@ -127,15 +127,15 @@ public class Main {
 
                 case "C":
                     System.out.print("Enter your id: ");
-                    id = sc.next();
+                    id = sc.next().toUpperCase();
                     student = StudentAuth.loginStudent(id);
                     if(student.listOfWash_Cycles.size() == 0 || student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).received) {
                         System.out.println("Laundry not yet dropped!");
                     }
-                    else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).washStatus) {
+                    else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).getWashStatus()) {
                         System.out.println("Washing in process...");
                     }
-                    else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).dryStatus) {
+                    else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).getDryStatus()) {
                         System.out.println("Drying in process...");
                     }
                     else {
@@ -144,6 +144,37 @@ public class Main {
                         else
                             System.out.println("Folding in process...");
                     }
+                    break;
+
+                case "B":
+                    System.out.print("Enter your id: ");
+                    id = sc.next().toUpperCase();
+                    student = StudentAuth.loginStudent(id);
+                    for (Wash_Cycle wash_cycle: student.listOfWash_Cycles) {
+                        System.out.println(wash_cycle);
+                    }
+                    break;
+
+                case "AC":
+                    System.out.print("Enter Username: ");
+                    String username = sc.next();
+                    System.out.print("Enter Password: ");
+                    password = sc.next();
+                    if(username.equals("admin") && password.equals("admin")) {
+                        Admin admin = new Admin(username, password);
+                        System.out.println("Admin Login Successful!");
+                    }
+                    else
+                        System.out.println("Incorrect username or password!");
+                    break;
+
+                case "L2":
+                    if(Admin.isLoggedIn) {
+                        Admin.isLoggedIn = false;
+                        System.out.println("Logged out successfully!");
+                    }
+                    else
+                        System.out.println("Need to log in first.");
                     break;
             }
         }

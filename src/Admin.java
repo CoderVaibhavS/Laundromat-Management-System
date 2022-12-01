@@ -4,6 +4,13 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Admin extends User {
+
+    public static boolean isLoggedIn;
+    Admin(String username, String password) {
+        super(username, password);
+        isLoggedIn = true;
+    }
+
     private static int revenue = 0;
 //    arraylist of all wash plans
     public static ArrayList<Wash_Plan> washPlans = new ArrayList<>();

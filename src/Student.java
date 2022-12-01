@@ -11,7 +11,6 @@ interface LaundryAccount{
 interface Laundry {
     void dropLaundry(float weight);
     void receiveLaundry(Wash_Cycle receivedCycle);
-    void refreshCycles();
 }
 
 public class Student extends User implements Laundry, Serializable {
@@ -49,9 +48,10 @@ public class Student extends User implements Laundry, Serializable {
     public int getAddCharge() { return this.addCharge; }
 
     // charged extra for extra wash used
-    public void updateAddCharge(int extraCharge) {
+    public void updateAddCharge(int extraCharge, Wash_Cycle cycle) {
         balance += extraCharge;
         addCharge += extraCharge;
+        cycle.setAdditionalCharge(extraCharge);
         Admin.updateRevenue(extraCharge);
         Admin.StudentsList.updateStudents();
     }
@@ -72,7 +72,7 @@ public class Student extends User implements Laundry, Serializable {
             extraCharge += (int)(extraWeight * plan.getRatePerCycle()*1.2/plan.getWeight());
             System.out.println("You dropped " + extraWeight + " kg extra, so you are charged Rs" + extraCharge + " extra.");
         }
-        updateAddCharge(extraCharge);
+        updateAddCharge(extraCharge, cycle);
 
         System.out.print("Dropped the laundry succesfully!");
         cycle.scheduleDel();
@@ -98,7 +98,7 @@ public class Student extends User implements Laundry, Serializable {
 
     public void receiveLaundry(Wash_Cycle receivedCycle) {
         for(Wash_Cycle cycle:listOfWash_Cycles){
-            if(cycle.equals(receivedCycle) && cycle.washStatus){
+            if(cycle.equals(receivedCycle) && cycle.getWashStatus()){
                 cycle.received = true;
             }
         }
@@ -106,12 +106,4 @@ public class Student extends User implements Laundry, Serializable {
         System.out.println(name + " received the laundry: " + receivedCycle.washId);
     }
 
-    public void refreshCycles() {
-        for(Wash_Cycle cycle : listOfWash_Cycles){
-            if(Calendar.getInstance().getTime().after(cycle.expDelDate))
-                cycle.washStatus = true;
-        }
-        Admin.StudentsList.updateStudents();
-        System.out.println("refreshed cycles for "+ getName());
-    }
 }

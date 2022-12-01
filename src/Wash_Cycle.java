@@ -6,11 +6,12 @@ public class Wash_Cycle implements Serializable {
     Student associatedStudent;
     private int washNo = 0;
     protected String washId;// private to protected
-    protected float weight;
-    protected boolean washStatus = false;  // status 1 for clothes ready
-    protected boolean dryStatus = false;
-    protected boolean F_or_I_Status = false;
+    private float weight;
+    private boolean washStatus = false;  // status 1 for clothes ready
+    private boolean dryStatus = false;
+    private boolean F_or_I_Status = false;
     protected boolean received = false; // true when laundry received
+    private int additionalCharge;
     protected Date placeDate;    /* Date.now() when the wash order is placed */
     protected Date expDelDate;   /* Date estimated by admin after the order is collected (+2 days in this case) */
     Wash_Cycle(String id, float weight) {
@@ -21,7 +22,7 @@ public class Wash_Cycle implements Serializable {
     }
     private int delTime;
 
-    protected void scheduleDel(){
+    public void scheduleDel(){
         
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
@@ -37,11 +38,28 @@ public class Wash_Cycle implements Serializable {
         System.out.println("Expected Delivery by: " + expDelDate.toString());
     }
 
+    public void setAdditionalCharge(int amount) { additionalCharge = amount; }
+
     String getWashId() {
         return this.washId;
     }
-
+    boolean getWashStatus() { return washStatus; }
+    boolean getDryStatus() { return dryStatus; }
+    boolean getIronOrFoldStatus() { return F_or_I_Status; }
     float getWeight() {
         return this.weight;
+    }
+
+    public String toString() {
+        if (received)
+            return "Laundry dropped on " + placeDate + " has been delivered and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+        else if(!washStatus)
+            return "Laundry dropped on " + placeDate + " is under washing and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+        else if(!dryStatus)
+            return "Laundry dropped on " + placeDate + " is under drying and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+        else if(associatedStudent.plan.ironORfold())
+            return "Laundry dropped on " + placeDate + " is under ironing and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+        else
+            return "Laundry dropped on " + placeDate + " is under folding and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
     }
 }
