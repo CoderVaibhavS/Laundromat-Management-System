@@ -147,7 +147,7 @@ public class Main {
                     }
                     break;
 
-                case "AC":
+                case "L1":
                     System.out.print("Enter Username: ");
                     String username = sc.next();
                     System.out.print("Enter Password: ");
@@ -159,6 +159,9 @@ public class Main {
                     else
                         System.out.println("Incorrect username or password!");
                     break;
+
+                case "AC":
+
 
                 case "L2":
                     if(Admin.isLoggedIn) {
