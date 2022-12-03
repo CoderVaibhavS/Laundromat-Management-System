@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72417e1a-20fe-44e4-9cbc-7d857ab11da7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Student.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentAuth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentAuth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/students.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/weeklyrecord.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wash_Cycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wash_Cycle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/students.txt" beforeDir="false" afterPath="$PROJECT_DIR$/students.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weeklyrecord.txt" beforeDir="false" afterPath="$PROJECT_DIR$/weeklyrecord.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../../task6.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +114,7 @@
       <workItem from="1669918558422" duration="802000" />
       <workItem from="1670071040591" duration="893000" />
       <workItem from="1670071977112" duration="907000" />
-      <workItem from="1670072923326" duration="2909000" />
+      <workItem from="1670072923326" duration="3518000" />
     </task>
     <servers />
   </component>

@@ -52,14 +52,14 @@ public class Wash_Cycle implements Serializable {
 
     public String toString() {
         if (received)
-            return "Laundry dropped on " + placeDate + " has been delivered and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+            return "Laundry dropped on " + placeDate + " has been delivered and costs " + associatedStudent.plan.getRatePerCycle() + " plus Rs " + additionalCharge + " extra charges.";
         else if(!washStatus)
-            return "Laundry dropped on " + placeDate + " is under washing and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+            return "Laundry dropped on " + placeDate + " is under washing and costs " + associatedStudent.plan.getRatePerCycle() + " plus Rs " + additionalCharge + " extra charges.";
         else if(!dryStatus)
-            return "Laundry dropped on " + placeDate + " is under drying and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+            return "Laundry dropped on " + placeDate + " is under drying and costs " + associatedStudent.plan.getRatePerCycle() + " plus Rs " + additionalCharge + " extra charges.";
         else if(associatedStudent.plan.ironORfold())
-            return "Laundry dropped on " + placeDate + " is under ironing and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+            return "Laundry dropped on " + placeDate + " is under ironing and costs " + associatedStudent.plan.getRatePerCycle() + " plus Rs " + additionalCharge + " extra charges.";
         else
-            return "Laundry dropped on " + placeDate + " is under folding and costs " + associatedStudent.plan.getRatePerCycle() + " including Rs " + additionalCharge + "extra charges.";
+            return "Laundry dropped on " + placeDate + " is under folding and costs " + associatedStudent.plan.getRatePerCycle() + " plus Rs " + additionalCharge + " extra charges.";
     }
 }

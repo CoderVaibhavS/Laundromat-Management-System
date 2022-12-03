@@ -129,6 +129,29 @@ public class Student extends User implements Laundry, Runnable, Serializable {
                         this.dropLaundry(weight);
                     }
                     break;
+
+                case "C":
+                    if(this.listOfWash_Cycles.size() == 0 || this.listOfWash_Cycles.get(this.listOfWash_Cycles.size() - 1).received) {
+                        System.out.println("Laundry not yet dropped!");
+                    }
+                    else if (!this.listOfWash_Cycles.get(this.listOfWash_Cycles.size() - 1).getWashStatus()) {
+                        System.out.println("Washing in process...");
+                    }
+                    else if (!this.listOfWash_Cycles.get(this.listOfWash_Cycles.size() - 1).getDryStatus()) {
+                        System.out.println("Drying in process...");
+                    }
+                    else {
+                        if (this.plan.ironORfold())
+                            System.out.println("Ironing in process...");
+                        else
+                            System.out.println("Folding in process...");
+                    }
+                    break;
+
+                case "B":
+                    for (Wash_Cycle wash_cycle: this.listOfWash_Cycles) {
+                        System.out.println(wash_cycle);
+                    }
             }
             System.in.notify();
         }

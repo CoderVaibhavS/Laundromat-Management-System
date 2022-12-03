@@ -3,7 +3,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
-public class Admin extends User {
+public class Admin extends User implements Runnable {
 
     public static boolean isLoggedIn;
     Admin(String username, String password) {
@@ -21,6 +21,7 @@ public class Admin extends User {
     public static void updateRevenue(int amount) { revenue += amount; }
     public static int getRevenue() { return revenue; }
     static int weekNo = weeklyRecord.size();
+    Thread t;
 
     public static synchronized void updateWeeklyRecord() {
         File f = new File("weeklyrecord.txt");
@@ -107,5 +108,9 @@ public class Admin extends User {
                 }
             }
         }
+    }
+
+    public void run() {
+        System.out.println("Admin Thread");
     }
 }
