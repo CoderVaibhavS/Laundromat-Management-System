@@ -13,6 +13,7 @@ public class Main {
         Admin.PlansList.addPlan("F_15", 15, 150, 6, false, "Wash + Dry + Fold");
         Admin.PlansList.addPlan("I_15", 15, 196, 6, true, "Wash + Dry + Iron");
 
+
         File f = new File("students.txt");
         try {
             f.createNewFile();
@@ -71,7 +72,7 @@ public class Main {
         }
 
         // ONLY FOR TESTING
-        StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
+        StudentAuth.registerStudent("Vaibhav Singla", "1", "Vyas", "F_4","1234");
         StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
 
 //        Student vaibhav = Admin.students.get("2021A7PS2227P");
@@ -85,9 +86,9 @@ public class Main {
         while(true) {
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
-            System.out.println("MAIN" + input);
 //             ALL ERROR CASES TO BE HANDLED
             switch (input) {
+                // Student methods
                 case "S":
                     System.out.print("Enter your id: ");
                     String id = sc.nextLine().toUpperCase();
@@ -114,6 +115,11 @@ public class Main {
                         student.t = new Thread(student);
                         student.func = "D";
                         student.t.start();
+                        try {
+                            student.t.join();
+                        }
+                        catch (Exception e){}
+
                     }
                     break;
 
@@ -121,33 +127,51 @@ public class Main {
                     System.out.print("Enter your id: ");
                     id = sc.next().toUpperCase();
                     student = StudentAuth.loginStudent(id);
-                    if(student.listOfWash_Cycles.size() == 0 || student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).received) {
-                        System.out.println("Laundry not yet dropped!");
-                    }
-                    else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).getWashStatus()) {
-                        System.out.println("Washing in process...");
-                    }
-                    else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).getDryStatus()) {
-                        System.out.println("Drying in process...");
-                    }
-                    else {
-                        if (student.plan.ironORfold())
-                            System.out.println("Ironing in process...");
-                        else
-                            System.out.println("Folding in process...");
+                    if (student != null) {
+                        student.t = new Thread(student);
+                        student.func = "C";
+                        student.t.start();
+                        try {
+                            student.t.join();
+                        }
+                        catch (Exception e){}
                     }
                     break;
 
                 case "B":
                     System.out.print("Enter your id: ");
                     id = sc.next().toUpperCase();
-                    student = StudentAuth.loginStudent(id);
-                    for (Wash_Cycle wash_cycle: student.listOfWash_Cycles) {
-                        System.out.println(wash_cycle);
-                    }
+                        student = StudentAuth.loginStudent(id);
+                        if (student != null) {
+                            student.t = new Thread(student);
+                            student.func = "B";
+                            student.t.start();
+                            try {
+                                student.t.join();
+                            }
+                            catch (Exception e){}
+                        }
                     break;
 
+                    case "R":
+                        System.out.print("Enter your id: ");
+                        id = sc.next().toUpperCase();
+                        student = StudentAuth.loginStudent(id);
+                        if (student != null) {
+                            student.t = new Thread(student);
+                            student.func = "R";
+                            student.t.start();
+                            try {
+                                student.t.join();
+                            }
+                            catch (Exception e){}
+                        }
+                        break;
+
+                // Admin methods
                 case "L1":
+                    Admin.t = new Thread();
+                    Admin.t.start();
                     System.out.print("Enter Username: ");
                     String username = sc.next();
                     System.out.print("Enter Password: ");
@@ -161,7 +185,52 @@ public class Main {
                     break;
 
                 case "AC":
+                    try {
+                        Admin.func = "AC";
+                        if (Admin.isLoggedIn) {
+                            Admin.t = new Thread(new Admin("admin", "admin"));
+                            Admin.t.start();
+                            Admin.t.join();
+                        }else {
+                            System.out.println("Need to log in first.");
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+                    break;
 
+                case "T":
+                    try {
+                        Admin.func = "T";
+                        if (Admin.isLoggedIn) {
+                            Admin.t = new Thread(new Admin("admin", "admin"));
+                            Admin.t.start();
+                            Admin.t.join();
+                        }else {
+                            System.out.println("Need to log in first.");
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+                    break;
+
+                case "U":
+                    try {
+                        Admin.func = "U";
+                        if (Admin.isLoggedIn) {
+                            Admin.t = new Thread(new Admin("admin", "admin"));
+                            Admin.t.start();
+                            Admin.t.join();
+                        }else {
+                            System.out.println("Need to log in first.");
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+                    break;
 
                 case "L2":
                     if(Admin.isLoggedIn) {

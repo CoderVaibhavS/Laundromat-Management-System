@@ -11,6 +11,7 @@ public class Wash_Cycle implements Serializable {
     private boolean dryStatus = false;
     private boolean F_or_I_Status = false;
     protected boolean received = false; // true when laundry received
+    private boolean onDelivery = false;
     private int additionalCharge;
     protected Date placeDate;    /* Date.now() when the wash order is placed */
     protected Date expDelDate;   /* Date estimated by admin after the order is collected (+2 days in this case) */
@@ -46,6 +47,15 @@ public class Wash_Cycle implements Serializable {
     boolean getWashStatus() { return washStatus; }
     boolean getDryStatus() { return dryStatus; }
     boolean getIronOrFoldStatus() { return F_or_I_Status; }
+    boolean isOnDelivery() { return onDelivery; }
+    boolean isDelivered() { return received; }
+    void updateStatus(String s) {
+        if(s.equals("WASH")) washStatus = true;
+        else if(s.equals("DRY")) dryStatus = true;
+        else if(s.equals("F_OR_I")) F_or_I_Status = true;
+        else if (s.equals("ONDELIVERY")) onDelivery = true;
+        else received = true;
+    }
     float getWeight() {
         return this.weight;
     }
