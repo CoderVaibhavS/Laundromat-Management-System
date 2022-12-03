@@ -13,7 +13,7 @@ interface Laundry {
     void receiveLaundry(Wash_Cycle receivedCycle);
 }
 
-public class Student extends User implements Laundry, Serializable {
+public class Student extends User implements Laundry, Runnable, Serializable {
     public ArrayList<Wash_Cycle> listOfWash_Cycles = new ArrayList<>();
     final private String name;
     final String id;
@@ -23,12 +23,14 @@ public class Student extends User implements Laundry, Serializable {
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
     private int washCyclesLeft;
+    static Thread t;
+    public String func;
 
     Student(String name, String id, String hostel, String planName, String password) {
-        super(id,password);
-        this.name = name;
-        this.id = id;
-        this.hostel = hostel;
+        super(id.toUpperCase(),password);
+        this.name = name.toUpperCase();
+        this.id = id.toUpperCase();
+        this.hostel = hostel.toUpperCase();
         this.plan = Admin.PlansList.getPlan(planName);
         this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
         washCyclesLeft = plan.getNoOfCycles();
@@ -104,6 +106,32 @@ public class Student extends User implements Laundry, Serializable {
         }
         Admin.StudentsList.updateStudents();
         System.out.println(name + " received the laundry: " + receivedCycle.washId);
+    }
+
+    public void run() {
+        synchronized (System.in) {
+            Scanner sc = new Scanner(System.in);
+            switch (func) {
+                case "D":
+                    System.out.println("started");
+                    System.out.println("Enter the weight of laundry in kgs: ");
+                    int weight = sc.nextInt();
+                    System.out.print("Enter the date in DD/MM/YYYY format: ");
+                    Date d = new Date();
+                    String date = sc.next();
+                    sc.nextLine();
+                    System.out.print("Enter the day: ");
+                    String day = sc.next().toUpperCase();
+                    if (!HostelDelTime.hostelDropDay.get(this.hostel).equals(day)) {
+                        System.out.println("You are not allowed to drop laundry on " + day + ". Please drop on your allotted day.");
+                    }
+                    else {
+                        this.dropLaundry(weight);
+                    }
+                    break;
+            }
+            System.in.notify();
+        }
     }
 
 }

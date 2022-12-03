@@ -3,7 +3,7 @@ import java.io.*;
 public class StudentAuth implements Serializable {
     public static String message;
 
-    public static void registerStudent(String name, String id, String hostel, String planName, String password) throws IOException{
+    public static synchronized void registerStudent(String name, String id, String hostel, String planName, String password) throws IOException{
 
         File f = new File("students.txt");
         try {
@@ -43,7 +43,7 @@ public class StudentAuth implements Serializable {
             Admin.StudentsList.addStudent(newStudent);
         }
     }
-    public static Student loginStudent(String id){
+    public static synchronized Student loginStudent(String id){
         if(Admin.students.get(id) == null){
             message = "User with " + id + " does not exist!";
         }

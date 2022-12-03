@@ -22,7 +22,7 @@ public class Admin extends User {
     public static int getRevenue() { return revenue; }
     static int weekNo = weeklyRecord.size();
 
-    public static void updateWeeklyRecord() {
+    public static synchronized void updateWeeklyRecord() {
         File f = new File("weeklyrecord.txt");
         f.delete();
         try {
@@ -77,7 +77,7 @@ public class Admin extends User {
             students.put(student.id, student);
         }
 
-        public static void updateStudents() {
+        public static synchronized void updateStudents() {
             File f = new File("students.txt");
             f.delete();
             try {

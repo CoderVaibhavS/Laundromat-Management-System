@@ -71,9 +71,9 @@ public class Main {
         }
 
         // ONLY FOR TESTING
-//        StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
-//        StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
-//
+        StudentAuth.registerStudent("Vaibhav Singla", "2021A7PS2227P", "Vyas", "F_4","1234");
+        StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
+
 //        Student vaibhav = Admin.students.get("2021A7PS2227P");
 //        vaibhav.dropLaundry(5);
 //        vaibhav.dropLaundry(10);
@@ -85,7 +85,7 @@ public class Main {
         while(true) {
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
-
+            System.out.println("MAIN" + input);
 //             ALL ERROR CASES TO BE HANDLED
             switch (input) {
                 case "S":
@@ -109,19 +109,11 @@ public class Main {
                 case "D":
                     System.out.print("Enter your id: ");
                     id = sc.next().toUpperCase();
-                    System.out.print("Enter the weight of laundry in kgs: ");
-                    int weight = sc.nextInt();
-                    System.out.print("Enter the date in DD/MM/YYYY format: ");
-                    Date d = new Date();
-                    String date = sc.next();
-                    System.out.print("Enter the day: ");
-                    String day = sc.next().toUpperCase();
                     Student student = StudentAuth.loginStudent(id);
-                    if (!HostelDelTime.hostelDropDay.get(student.hostel).equals(day)) {
-                        System.out.println("You are not allowed to drop laundry on " + day + ". Please drop on your allotted day.");
-                    }
-                    else {
-                        student.dropLaundry(weight);
+                    if (student != null) {
+                        student.t = new Thread(student);
+                        student.func = "D";
+                        student.t.start();
                     }
                     break;
 
