@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+
 public class Main{
     public static void main(String[] args) throws IOException {
         boolean running =true;
@@ -123,15 +124,26 @@ public class Main{
 //                     }
 //                     break;
 
-                
-//                 case "B":
-//                     System.out.print("Enter your id: ");
-//                     id = sc.next().toUpperCase();
-//                     student = StudentAuth.loginStudent(id);
-//                     for (Wash_Cycle wash_cycle: student.listOfWash_Cycles) {
-//                         System.out.println(wash_cycle);
-//                     }
-//                     break;
+                // case "C":
+                //     System.out.print("Enter your id: ");
+                //     id = sc.next().toUpperCase();
+                //     student = StudentAuth.loginStudent(id);
+                //     if(student.listOfWash_Cycles.size() == 0 || student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).received) {
+                //         System.out.println("Laundry not yet dropped!");
+                //     }
+                //     else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).getWashStatus()) {
+                //         System.out.println("Washing in process...");
+                //     }
+                //     else if (!student.listOfWash_Cycles.get(student.listOfWash_Cycles.size() - 1).getDryStatus()) {
+                //         System.out.println("Drying in process...");
+                //     }
+                //     else {
+                //         if (student.plan.ironORfold())
+                //             System.out.println("Ironing in process...");
+                //         else
+                //             System.out.println("Folding in process...");
+                //     }
+                //     break;
 
 //                 case "AC":
 //                     System.out.print("Enter Username: ");
