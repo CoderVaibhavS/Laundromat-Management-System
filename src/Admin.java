@@ -1,8 +1,7 @@
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Admin extends User implements Runnable {
@@ -129,13 +128,18 @@ public class Admin extends User implements Runnable {
                     String id = sc.next().toUpperCase();
                     Student student = Admin.students.get(id);
                     System.out.print("Enter Date when laundry was dropped: ");
-                    LocalDate date = LocalDate.parse(sc.next());
+                    try {
+
+                    Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sc.next());
                     if(student == null) {
                         System.out.println("User with id " + id + " doesn't exist." );
                         break;
                     }
                     for (Wash_Cycle wash_cycle : student.listOfWash_Cycles) {
                         if(wash_cycle.placeDate.equals(date)) {
+                            if(wash_cycle.isDelivered()) {
+                                System.out.println("Laundry received");
+                            }
                             if (wash_cycle.isOnDelivery()) {
                                 System.out.println("Laundry on delivery.");
                             }
@@ -154,6 +158,8 @@ public class Admin extends User implements Runnable {
                             System.out.println("Laundry not dropped on " + date + " by " + student.getId() + ".");
                         }
                     }
+                    }
+                    catch (Exception e){}
                     break;
 
                 case "U":
@@ -161,7 +167,8 @@ public class Admin extends User implements Runnable {
                     id = sc.next().toUpperCase();
                     student = Admin.students.get(id);
                     System.out.print("Enter Date when laundry was dropped: ");
-                    date = LocalDate.parse(sc.next());
+                    try {
+                        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sc.next());
                     System.out.print("Update status: ");
                     String status = sc.next().toUpperCase();
                     if(student == null) {
@@ -176,6 +183,7 @@ public class Admin extends User implements Runnable {
                                 case "F_OR_I":
                                 case "ONDELIVERY":
                                     wash_cycle.updateStatus(status);
+                                    System.out.println("Status updated!");
                                     break;
                                 default:
                                     System.out.println("Invalid status!");
@@ -184,6 +192,43 @@ public class Admin extends User implements Runnable {
                         else {
                             System.out.println("Laundry not dropped on " + date + " by " + student.getId() + ".");
                         }
+                    }
+                    }
+                    catch (Exception e){}
+                    break;
+
+                case "SA":
+                    System.out.print("Enter hostel name: ");
+                    String hostel = sc.next().toUpperCase();
+                    System.out.print("Enter day of delivery: ");
+                    String day = sc.next().toUpperCase();
+                    HostelSchedule.hostelDelDay.put(hostel, day);
+                    System.out.print("Enter time of delivery: ");
+                    String time = sc.next();
+                    try {
+                        HostelSchedule.hostelDelTime.put(hostel, new SimpleDateFormat("hh:mm").parse(time).getHours());
+                    }
+                    catch (Exception e){}
+                    for (Student stud: Admin.students.values()) {
+                        if(stud.getHostel().equals(hostel)) {
+                            for (Wash_Cycle wash_cycle: stud.listOfWash_Cycles) {
+                                wash_cycle.scheduleDel();
+                            }
+                        }
+                    }
+                    break;
+
+                case "RA":
+                    Iterator<String> iter = HostelSchedule.hostelDelTime.keySet().iterator();
+                    while(iter.hasNext()) {
+                        hostel = iter.next();
+                        float revenue = 0;
+                        for(Student std: Admin.students.values()) {
+                            if(std.getHostel().equals(hostel)) {
+                                revenue += std.getBalance();
+                            }
+                        }
+                        System.out.println(hostel + " Bhawan: Rs " + revenue + " revenue generated");
                     }
                     break;
             }

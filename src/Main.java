@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 
@@ -74,14 +75,6 @@ public class Main {
         // ONLY FOR TESTING
         StudentAuth.registerStudent("Vaibhav Singla", "1", "Vyas", "F_4","1234");
         StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
-
-//        Student vaibhav = Admin.students.get("2021A7PS2227P");
-//        vaibhav.dropLaundry(5);
-//        vaibhav.dropLaundry(10);
-//        System.out.println(vaibhav.totalWashes);
-//        for (HashMap<String,Integer> map: Admin.weeklyRecord) {
-//            System.out.println(map.entrySet());
-//        }
 
         while(true) {
             Scanner sc = new Scanner(System.in);
@@ -219,6 +212,38 @@ public class Main {
                 case "U":
                     try {
                         Admin.func = "U";
+                        if (Admin.isLoggedIn) {
+                            Admin.t = new Thread(new Admin("admin", "admin"));
+                            Admin.t.start();
+                            Admin.t.join();
+                        }else {
+                            System.out.println("Need to log in first.");
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+                    break;
+
+                case "SA":
+                    try {
+                        Admin.func = "SA";
+                        if (Admin.isLoggedIn) {
+                            Admin.t = new Thread(new Admin("admin", "admin"));
+                            Admin.t.start();
+                            Admin.t.join();
+                        }else {
+                            System.out.println("Need to log in first.");
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+                    break;
+
+                case "RA":
+                    try {
+                        Admin.func = "RA";
                         if (Admin.isLoggedIn) {
                             Admin.t = new Thread(new Admin("admin", "admin"));
                             Admin.t.start();

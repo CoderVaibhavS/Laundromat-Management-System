@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class HostelDelTime{
+public class HostelSchedule {
 public static Map<String,Integer> hostelDelTime = new HashMap<String,Integer>(){{
     put("GANDHI",12);
     put("KRISHNA",12);
@@ -34,4 +34,22 @@ public static Map<String, String> hostelDropDay = new HashMap<>() {{
     put("RANA PRATAP","FRIDAY");
     put("ASHOK","FRIDAY");
 }};
+
+    public static Map<String, String> hostelDelDay = new HashMap<>() {{
+        put("GANDHI","SATURDAY");
+        put("KRISHNA","SATURDAY");
+        put("RAM","SUNDAY");
+        put("BUDH","SUNDAY");
+        put("SHANKAR","MONDAY");
+        put("VYAS","MONDAY");
+        put("VK","TUESDAY");
+        put("BHAGIRATH","TUESDAY");
+        put("SR","WEDNESDAY");
+        put("CVR","THURSDAY");
+        put("MALVIYA","WEDNESDAY");
+        put("MEERA","FRIDAY");
+        put("RANA PRATAP","THURSDAY");
+        put("ASHOK","THURSDAY");
+    }};
+
 }
