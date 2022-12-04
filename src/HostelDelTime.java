@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class HostelDelTime{
 public static Map<String,Integer> hostelDelTime = new HashMap<String,Integer>(){{
     put("GANDHI",12);

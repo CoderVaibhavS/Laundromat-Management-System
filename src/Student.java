@@ -23,7 +23,7 @@ public class Student extends User implements Laundry, Runnable, Serializable {
     private int addCharge;  // charged 20% extra in case of exceeding the no of washes
     protected int totalWashes = 0;
     private int washCyclesLeft;
-    static Thread t;
+    Thread t;
     public String func;
 
     Student(String name, String id, String hostel, String planName, String password) {
@@ -35,6 +35,7 @@ public class Student extends User implements Laundry, Runnable, Serializable {
         this.balance = plan.getRatePerCycle() * plan.getNoOfCycles();
         washCyclesLeft = plan.getNoOfCycles();
         Admin.updateRevenue(plan.getRatePerCycle()*plan.getNoOfCycles());
+        System.out.println("Registered:" +id);
     }
 
     public String getName() { return name; }
