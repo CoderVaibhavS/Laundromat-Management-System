@@ -123,7 +123,7 @@ public class Student extends User implements Laundry, Runnable, Serializable {
                         int weight = sc.nextInt();
                         System.out.print("Enter the day: ");
                         String day = sc.next().toUpperCase();
-                        System.out.print("Enter the date in DD-MM-YYYY format: ");
+                        System.out.print("Enter the date in DD/MM/YYYY format: ");
                         try {
                             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sc.next());
                             if (!HostelSchedule.hostelDropDay.get(this.hostel).equals(day)) {
@@ -167,6 +167,9 @@ public class Student extends User implements Laundry, Runnable, Serializable {
                             }
                             else if(wash_cycle.placeDate.equals(date)) {
                                 System.out.println("Laundry dropped on " + date + " is not delivered yet.");
+                            }
+                            else {
+                                System.out.println("Laundry not dropped on " + date);
                             }
                         }
                         }

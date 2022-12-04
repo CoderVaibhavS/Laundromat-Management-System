@@ -9,18 +9,17 @@
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin$PlansList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin$PlansList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin$StudentsList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin$StudentsList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/HostelDelTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/HostelDelTime.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Laundry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Laundry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/HostelDelTime$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/HostelDelTime$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/HostelDelTime$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/HostelDelTime.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Laundromat Management System/Wash_Cycle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laundromat Management System/Wash_Cycle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HostelDelTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HostelSchedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Wash_Cycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wash_Cycle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/students.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/weeklyrecord.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../../task6.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +142,11 @@
       <workItem from="1670135326269" duration="6821000" />
       <workItem from="1670143956931" duration="700000" />
       <workItem from="1670144678190" duration="1162000" />
-      <workItem from="1670146418441" duration="876000" />
+      <workItem from="1670146418441" duration="4222000" />
+      <workItem from="1670158390903" duration="1103000" />
+      <workItem from="1670161672950" duration="471000" />
+      <workItem from="1670162178283" duration="430000" />
+      <workItem from="1670164420664" duration="633000" />
     </task>
     <servers />
   </component>

@@ -127,9 +127,8 @@ public class Admin extends User implements Runnable {
                     System.out.print("Enter id: ");
                     String id = sc.next().toUpperCase();
                     Student student = Admin.students.get(id);
-                    System.out.print("Enter Date when laundry was dropped: ");
+                    System.out.print("Enter Date when laundry was dropped in DD/MM/YYYY format: ");
                     try {
-
                     Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sc.next());
                     if(student == null) {
                         System.out.println("User with id " + id + " doesn't exist." );
@@ -169,7 +168,7 @@ public class Admin extends User implements Runnable {
                     System.out.print("Enter Date when laundry was dropped: ");
                     try {
                         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sc.next());
-                    System.out.print("Update status: ");
+                    System.out.print("Update status - WASH / DRY / F_OR_I / ONDELIVERY: ");
                     String status = sc.next().toUpperCase();
                     if(student == null) {
                         System.out.println("User with id " + id + " doesn't exist." );
@@ -200,22 +199,16 @@ public class Admin extends User implements Runnable {
                 case "SA":
                     System.out.print("Enter hostel name: ");
                     String hostel = sc.next().toUpperCase();
-                    System.out.print("Enter day of delivery: ");
+                    System.out.print("Enter day of delivery in DD/MM/YYYY format: ");
                     String day = sc.next().toUpperCase();
-                    HostelSchedule.hostelDelDay.put(hostel, day);
-                    System.out.print("Enter time of delivery: ");
+                    HostelSchedule.hostelDelDay.replace(hostel, day);
+                    System.out.print("Enter time of delivery in HH:MM format: ");
                     String time = sc.next();
                     try {
-                        HostelSchedule.hostelDelTime.put(hostel, new SimpleDateFormat("hh:mm").parse(time).getHours());
+                        HostelSchedule.hostelDelTime.replace(hostel, new SimpleDateFormat("hh:mm").parse(time).getHours());
+                        System.out.println("Delivery time scheduled");
                     }
                     catch (Exception e){}
-                    for (Student stud: Admin.students.values()) {
-                        if(stud.getHostel().equals(hostel)) {
-                            for (Wash_Cycle wash_cycle: stud.listOfWash_Cycles) {
-                                wash_cycle.scheduleDel();
-                            }
-                        }
-                    }
                     break;
 
                 case "RA":

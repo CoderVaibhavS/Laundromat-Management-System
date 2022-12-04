@@ -72,14 +72,39 @@ public class Main {
             }
         }
 
-        // ONLY FOR TESTING
-        StudentAuth.registerStudent("Vaibhav Singla", "1", "Vyas", "F_4","1234");
-        StudentAuth.registerStudent("Rudra Goyal", "2021A7PS0708P", "Vyas", "F_4","5678");
+        System.out.println("-------------Welcome to the Laundromat Management System--------------");
+        try {
+            Thread.currentThread().sleep(1000);
+        }
+        catch (Exception e) {}
 
-        while(true) {
+        System.out.println("Enter 'S' to register as student");
+        System.out.println("Enter 'D' to drop laundry");
+        System.out.println("Enter 'C' to check status of last dropped laundry");
+        System.out.println("Enter 'B' to check expense and laundry details");
+        System.out.println("Enter 'R' to receive laundry");
+
+        System.out.println("Enter 'L1' to login as admin");
+        System.out.println("Enter 'AC' to see all the registered students");
+        System.out.println("Enter 'T' to check status of a student's laundry");
+        System.out.println("Enter 'U' to update status of a laundry");
+        System.out.println("Enter 'RA' to display hostel-wise revenue");
+        System.out.println("Enter 'L2' to logout");
+
+        boolean running = true;
+        while(running) {
+            try {
+                Thread.currentThread().sleep(1000);
+            }
+            catch (Exception e) {
+                Thread.interrupted();
+            }
             Scanner sc = new Scanner(System.in);
+
+            System.out.println("\n\nEnter one of the following: S/D/C/B/R for students's operations");
+            System.out.println("Enter one of the following: L1/AC/SA/T/U/RA/L2 for admin operations");
+            System.out.println("Enter 'exit' to exit\n\n");
             String input = sc.nextLine();
-//             ALL ERROR CASES TO BE HANDLED
             switch (input) {
                 // Student methods
                 case "S":
@@ -264,6 +289,15 @@ public class Main {
                     }
                     else
                         System.out.println("Need to log in first.");
+                    break;
+
+                case "exit":
+                    running = false;
+                    System.out.println("Exiting the system...");
+                    break;
+
+                default:
+                    System.out.println("OOPS! Invalid option");
                     break;
             }
         }

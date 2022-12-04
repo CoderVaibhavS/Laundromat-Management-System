@@ -24,19 +24,6 @@ public class Wash_Cycle implements Serializable {
     private int delTime;
 
     public void scheduleDel(){
-        
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(new Date());
-//        placeDate=cal.getTime();
-//        if(placeDate.getHours()>=12){
-//            cal.add(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        cal.add(Calendar.DAY_OF_MONTH, 2);
-//        expDelDate = cal.getTime();
-//        expDelDate.setHours(delTime);
-//        expDelDate.setMinutes(0);
-//        expDelDate.setSeconds(0);
-//        System.out.println("Expected Delivery by: " + expDelDate.toString());
         System.out.println("Expected delivery by: " + HostelSchedule.hostelDropDay.get(associatedStudent.getHostel()) + " at " + HostelSchedule.hostelDelTime.get(associatedStudent.getHostel()));
     }
 
